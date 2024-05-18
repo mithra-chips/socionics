@@ -11,5 +11,5 @@ export default defineConfig({
       '@': resolve(__dirname, 'src')
     }
   },
-  base: '/socionics/'
+  base: '/dist/'
 })
