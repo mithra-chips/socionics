@@ -33,7 +33,7 @@ const submit = async () => {
   // http请求：添加进json文件的数组里
   const req: Reply = {
     id: chatStore.replies.length + 1,
-    type: 'IEE',
+    type: socType.value,
     topicId: '1',
     reply: answer.value,
     kudoCount: 0
