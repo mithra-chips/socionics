@@ -1,10 +1,10 @@
 <template>
   <v-container fluid>
     <v-card variant="text">
-      <template v-slot:title> 话题：防疫三年是我失去的三年 </template>
-      <template v-slot:text>
+      <v-card-title class="chat-title"> 话题：防疫三年是我失去的三年 </v-card-title>
+      <v-card-text>
         描述：可以从个人成长机遇、社会影响、心理、社交等方面发布个人感言
-      </template>
+      </v-card-text>
     </v-card>
     <v-text-field v-model="socType" placeholder="输入你的soc类型"></v-text-field>
     <v-textarea
@@ -41,3 +41,12 @@ const submit = async () => {
   await chatStore.addReply(req)
 }
 </script>
+
+<style scoped>
+.chat-title {
+      overflow: visible;
+      white-space: normal;
+      text-overflow: inherit
+}
+</style>
+
