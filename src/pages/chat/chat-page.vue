@@ -1,7 +1,8 @@
 <template>
   <v-container fluid>
     <v-card variant="text">
-      <v-card-title class="chat-title"> 话题：防疫三年是我失去的三年 </v-card-title>
+      <v-card-title class="chat-title"> 话题<br/>
+        三年防疫：时间的流逝与停滞 </v-card-title>
       <v-card-text>
         描述：可以从个人成长机遇、社会影响、心理、社交等方面发布个人感言
       </v-card-text>
