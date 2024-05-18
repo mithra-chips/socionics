@@ -34,7 +34,7 @@ const onPlus = async (reply: Reply) => {
   // 调用API更新某一条数据
   const req: Reply = {
     id: reply.id,
-    kudoCount: reply.kudoCount + 1
+    kudoCount: reply.kudoCount ?? 0 + 1
   }
   await chatStore.updateReply(req)
 }

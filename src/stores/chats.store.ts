@@ -7,7 +7,7 @@ export type Reply = {
   type?: string
   topicId?: string
   reply?: string
-  kudoCount: number
+  kudoCount?: number
 }
 
 export type Replies = {
@@ -26,7 +26,7 @@ export const useChatStore = defineStore('use-chat', {
         const result = response.data as Replies
         this.$patch({ replies: result.replies })
       } catch (error) {
-        console.error('Error adding data to JSON file:', error)
+        console.error(error)
       }
     },
     async updateReply(reply: Reply) {
@@ -35,7 +35,7 @@ export const useChatStore = defineStore('use-chat', {
         const result = response.data as Replies
         this.$patch({ replies: result.replies })
       } catch (error) {
-        console.error('Error adding data to JSON file:', error)
+        console.error(error)
       }
     },
     async getReplies() {
@@ -44,7 +44,16 @@ export const useChatStore = defineStore('use-chat', {
         const result = response.data as Replies
         this.$patch({ replies: result.replies })
       } catch (error) {
-        console.error('Error adding data to JSON file:', error)
+        console.error(error)
+      }
+    },
+    async deleteReply(reply: Reply) {
+      try {
+        const response = await axios.post('/api/delete-replies', reply)
+        const result = response.data as Replies
+        this.$patch({ replies: result.replies })
+      } catch (error) {
+        console.error(error)
       }
     }
   }

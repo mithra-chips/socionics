@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import ChatPageComponent from '@/pages/chat/chat-page.vue'
 </script>
 
 <template>
   <v-app>
-    <ChatPageComponent />
     <RouterView />
   </v-app>
 </template>
