@@ -8,9 +8,11 @@
     "start:server": "cd src/server && node server",
     "dev": "run-p start:*",
     "build": "run-p type-check \"build-only {@}\" --",
+    "build-prod": "run-p type-check \"build-only-prod {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
+    "build-only-prod":"vite build --mode prod",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
