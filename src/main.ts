@@ -1,15 +1,16 @@
-import './assets/main.css'
+import '@/assets/main.css'
 
-import { createApp } from 'vue'
+import { createApp, onMounted, onUnmounted, ref } from 'vue'
 import { createPinia } from 'pinia'
 
-import App from './App.vue'
-import router from './router'
+import App from '@/App.vue'
+import router from '@/router'
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import { useChatStore } from '@/stores/chats.store'
 
 const app = createApp(App)
 
@@ -22,5 +23,20 @@ const vuetify = createVuetify({
   ssr: true
 })
 app.use(vuetify)
+
+const timerId = ref<NodeJS.Timeout | null>(null);
+
+onMounted(() => {
+  const chatStore = useChatStore()
+  timerId.value = setInterval(async () => {
+    await chatStore.getReplies();
+  }, 600000);
+});
+
+onUnmounted(() => {
+  if (timerId.value) {
+    clearInterval(timerId.value);
+  }
+});
 
 app.mount('#app')
