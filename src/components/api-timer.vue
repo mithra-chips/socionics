@@ -11,7 +11,7 @@ onMounted(() => {
   timerId.value = window.setInterval(async () => {
     await chatStore.getReplies();
     console.log('定时器调用成功')
-  }, 3000);
+  }, 600000);
 });
 
 onUnmounted(() => {
