@@ -40,6 +40,8 @@ const submit = async () => {
     kudoCount: 0
   }
   await chatStore.addReply(req)
+  socType.value = ''
+  answer.value = ''
 }
 </script>
 
