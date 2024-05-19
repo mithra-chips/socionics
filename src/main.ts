@@ -24,18 +24,18 @@ const vuetify = createVuetify({
 })
 app.use(vuetify)
 
-const timerId = ref<NodeJS.Timeout | null>(null);
+const timerId = ref<number | null>(null);
 
 onMounted(() => {
   const chatStore = useChatStore()
-  timerId.value = setInterval(async () => {
+  timerId.value = window.setInterval(async () => {
     await chatStore.getReplies();
   }, 600000);
 });
 
 onUnmounted(() => {
   if (timerId.value) {
-    clearInterval(timerId.value);
+    window.clearInterval(timerId.value);
   }
 });
 
