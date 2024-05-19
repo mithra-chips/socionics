@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import ApiTimer from '@/components/api-timer.vue';
 </script>
 
 <template>
   <v-app>
     <RouterView />
+    <ApiTimer />
   </v-app>
 </template>
 
