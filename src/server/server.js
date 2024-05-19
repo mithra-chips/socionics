@@ -1,9 +1,10 @@
-import express from 'express'
-import fs from 'fs'
-import bodyParser from 'body-parser'
+const express = require("express");
+const fs = require("fs");
+const bodyParser = require('body-parser')
 
 const app = express()
 app.use(bodyParser.json())
+const PORT = process.env.PORT || 8081;
 
 const readFile = (path, options) =>
   new Promise((resolve) => {
@@ -49,6 +50,7 @@ app.post('/api/add-reply', async (req, res) => {
   res.status(200)
   const newJson = await readReplies()
   res.json(newJson)
+  console.log('添加成功')
 })
 
 app.post('/api/update-reply', async (req, res) => {
@@ -64,12 +66,36 @@ app.post('/api/update-reply', async (req, res) => {
   res.status(200)
   const newJson = await readReplies()
   res.json(newJson)
+  console.log('更新成功')
 })
 
 app.get('/api/get-replies', async (req, res) => {
   const response = await readReplies()
   res.json(response)
   res.status(200)
+  console.log('获取成功')
+})
+
+app.post('/api/delete-replies',async (req, res) => {
+  // { "replies": [] }
+  const response = await readReplies()
+  const body = req.body
+  if(!body.id){
+    res.status(200)
+    res.json(response)
+    return;
+  }
+  const { replies } = response
+  for(let i = replies.length - 1; i >= 0; i--){
+    if(replies[i].id === body.id){
+      replies.splice(i, 1);
+      await writeFile('res/replies.json', JSON.stringify({ replies }), 'utf8')
+    }
+  }
+  const newJson = await readReplies()
+  res.status(200)
+  res.json(newJson)
+  console.log('删除成功')
 })
 
 const readReplies = async () => {
@@ -78,7 +104,7 @@ const readReplies = async () => {
   return json
 }
 
-const server = app.listen(8081, function () {
+const server = app.listen(PORT, function () {
   const host = server.address().address
   const port = server.address().port
 
