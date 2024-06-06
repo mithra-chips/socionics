@@ -19,7 +19,7 @@ export const useChatStore = defineStore('use-chat', {
     replies: [] as Reply[]
   }),
   actions: {
-    async addReply(reply: Reply) {
+    async addReply(reply: Partial<Reply>) {
       // http请求：添加进json文件的数组里
       try {
         const response = await axios.post('/api/add-reply', reply)
